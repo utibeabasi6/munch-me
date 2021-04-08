@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  font-family: Kanit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hero {
+  background-color: #1b1c1d;
+  padding: 2rem 0;
+}
+.heroH1 {
+  box-shadow: 3px 5px blue;
+}
