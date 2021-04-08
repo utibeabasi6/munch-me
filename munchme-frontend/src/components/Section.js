@@ -10,13 +10,12 @@ export function CakeSection(props) {
         axios.get('http://127.0.0.1:8000/api/cakes').then(res => setdata(res.data)).catch(err => seterror(err));
     }, []);
 
-    console.log(data);
     return <Segment basic textAlign='center'>
         <Header as='h2' content={props.sectionTitle} />
 
         {error ? <Message negative>
-            <Message.Header>We're sorry we can't apply that discount</Message.Header>
-            <p>That offer has expired</p>
+            <Message.Header>Sorry, an error occured!</Message.Header>
+            <p>{error.Error}</p>
         </Message> : data ? <Container><Grid textAlign='center' stackable columns={4}> {data['results'].slice(0, 4).map((value, index) => <Grid.Column ><Card
             style={{ borderRadius: 0, border: 'none' }}
             key={index}
@@ -39,13 +38,12 @@ export function DesertSection(props) {
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/api/cakes').then(res => setdata(res.data)).catch(err => seterror(err));
     }, []);
-
     return <Segment basic textAlign='center' inverted>
         <Header as='h2' content={props.sectionTitle} />
 
         {error ? <Message negative>
-            <Message.Header>We're sorry we can't apply that discount</Message.Header>
-            <p>That offer has expired</p>
+            <Message.Header>Sorry, an error occured!</Message.Header>
+            <p>{error.response}</p>
         </Message> : data ? <Container><Grid textAlign='center' stackable columns={4}>{data['results'].slice(4, 8).map((value, index) => <Grid.Column><Card
             style={{ borderRadius: 0, border: 'none' }}
             key={index}

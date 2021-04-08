@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import { PaystackButton } from 'react-paystack';
 import { Button, Container, Form, Input, Segment } from "semantic-ui-react";
+import axios from "axios";
 
 export default function Checkoutpage() {
     const publicKey = "pk_test_18ac22cb2da3a4a97b91c5caf00eeb905fc04571"
@@ -22,6 +23,7 @@ export default function Checkoutpage() {
             setEmail("")
             setName("")
             setPhone("")
+            axios.post('http://localhost:8000/api/send_email/', { email: email })
         },
         onClose: () => alert("Wait! You need this oil, don't go!!!!"),
     }
@@ -44,11 +46,11 @@ export default function Checkoutpage() {
                         onChange={(e) => setEmail(e.target.value)}
                     /><br /><br />
                     <Input
-                        type="text"
+                        type="telephone"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                     /><br /><br />
-                    <Button as={PaystackButton} content='Buy Now' className="paystack-button" {...componentProps} />
+                    <Button as={PaystackButton} content='Buy Now' {...componentProps} />
                 </Form>
             </Segment></Container>
         </>

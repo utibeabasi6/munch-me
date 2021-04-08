@@ -1,12 +1,20 @@
 import { useState } from 'react';
+import { createMedia } from '@artsy/fresnel'
 import { Link } from 'react-router-dom';
 import { Menu, Button, Container, Icon } from 'semantic-ui-react';
 
+const { MediaContextProvider, Media } = createMedia({
+    breakpoints: {
+        mobile: 0,
+        tablet: 768,
+        computer: 1024,
+    },
+})
 
 export default function Navbar({ mobile }) {
     const [visible, setvisible] = useState(false)
-    if (mobile) {
-        return <Menu inverted size='small' style={{ borderRadius: 0, margin: 0 }}>
+    return < MediaContextProvider >
+        <Media at='mobile'><Menu inverted size='small' style={{ borderRadius: 0, margin: 0 }}>
             <Container>
 
                 <Menu.Item onClick={() => setvisible(!visible)}>
@@ -22,9 +30,8 @@ export default function Navbar({ mobile }) {
                 </Menu.Item>
             </Container>
 
-        </Menu>
-    } else {
-        return <Menu borderless inverted size='large' style={{ borderRadius: 0, margin: 0 }}>
+        </Menu></Media>
+        <Media greaterThan='mobile'><Menu borderless inverted size='large' style={{ borderRadius: 0, margin: 0 }}>
             <Container>
 
                 <Menu.Item content='Home' icon='home' as={Link} to='/home' />
@@ -40,7 +47,9 @@ export default function Navbar({ mobile }) {
                 </Menu.Item>
             </Container>
 
-        </Menu>
-    }
+        </Menu></Media>
+    </MediaContextProvider >
+
 
 }
+

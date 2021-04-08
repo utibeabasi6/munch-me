@@ -1,6 +1,8 @@
+import _ from 'lodash';
+
 export function addToCart(cake) {
-    var cart = sessionStorage.getItem('cart');
-    var cartId = sessionStorage.getItem('cartId');
+    let cart = sessionStorage.getItem('cart');
+    let cartId = sessionStorage.getItem('cartId');
     if (cart == null || cartId == null) {
         sessionStorage.setItem('cart', JSON.stringify({ 'items': [cake] }))
         sessionStorage.setItem('cartId', JSON.stringify({ 'items': [cake['id']] }))
@@ -21,14 +23,13 @@ export function getCart() {
 }
 
 export function removeFromCart(cake) {
-    var cart = sessionStorage.getItem('cart');
-    var cartId = sessionStorage.getItem('cartId');
+    let cart = sessionStorage.getItem('cart');
+    let cartId = sessionStorage.getItem('cartId');
     if (cart != null) {
         cart = JSON.parse(cart)
         cartId = JSON.parse(cartId)
-        var index = cart['items'].find(c => c == cake)
-        var idIndex = cartId['items'].find(c => c.id == cake['id'])
-        console.log(index, idIndex)
+        _.remove(cart['items'], cake)
+        _.remove(cartId['items'], (n) => n === cake['id'])
         sessionStorage.setItem('cart', JSON.stringify({ 'items': cart['items'] }));
         sessionStorage.setItem('cartId', JSON.stringify({ 'items': cartId['items'] }));
     }
