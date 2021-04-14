@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { PaystackButton } from 'react-paystack';
 import { Button, Container, Form, Input, Segment } from "semantic-ui-react";
 import axios from "axios";
+// import { getTotalItemsInCart } from '../components/Cart'
 
 export default function Checkoutpage() {
     const publicKey = "pk_test_18ac22cb2da3a4a97b91c5caf00eeb905fc04571"
@@ -20,17 +21,15 @@ export default function Checkoutpage() {
         publicKey,
         text: "Buy Now",
         onSuccess: (e) => {
-            setEmail("")
-            setName("")
-            setPhone("")
             axios.post('http://localhost:8000/api/send_email/', { email: email })
+            window.location.pathname = '/'
         },
         onClose: () => alert("Wait! You need this oil, don't go!!!!"),
     }
 
     return (
         <>
-            <Navbar mobile={true} />
+            <Navbar />
             <Container><Segment textAlign='center'>
                 <Form>
                     <Input

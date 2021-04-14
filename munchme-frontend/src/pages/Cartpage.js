@@ -4,7 +4,7 @@ import { removeFromCart, getCart } from '../components/Cart';
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export default function Orderpage() {
+export default function Cartpage() {
     const [cart, setcart] = useState(getCart());
     return <><Navbar mobile={window.innerWidth <= 750} />
         <Segment basic>
@@ -32,8 +32,7 @@ export default function Orderpage() {
                         Remove from cart
                   </Button>}
                 /></Grid.Column>)}</Grid> <Button as={Link} to='/order/checkout' content='Proceed to checkout' /></> : <Message negative>
-                    <Message.Header>We're sorry we can't apply that discount</Message.Header>
-                    <p>That offer has expired</p>
+                    <Message.Header>Sorry, Your cart is empty</Message.Header>
                 </Message>}
             </Container>
         </Segment>

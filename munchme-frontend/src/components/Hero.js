@@ -1,31 +1,13 @@
-import { Button, Container, Header, Icon, Segment } from 'semantic-ui-react'
+import { Segment } from 'semantic-ui-react'
 
-export default function Hero({ mobile }) {
-    return <Segment inverted style={{ margin: 0, backgroundImage: 'url(/hero-bg.jpg)', backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }} basic><Container text textAlign='center'>
-        <Header
-            as='h1'
-            content='Munch me Confectioneries'
-            inverted
-            style={{
-                fontSize: mobile ? '2em' : '4em',
-                fontWeight: 'normal',
-                marginBottom: 0,
-                marginTop: mobile ? '1.5em' : '3em',
-            }}
-        />
-        <Header
-            as='h2'
-            content='Do whatever you want when you want to.'
-            inverted
-            style={{
-                fontSize: mobile ? '1.5em' : '1.7em',
-                fontWeight: 'normal',
-                marginTop: mobile ? '0.5em' : '1.5em',
-            }}
-        />
-        <Button primary size='huge'>
-            Get Started
-      <Icon name='right arrow' />
-        </Button>
-    </Container></Segment>
+// Photo by <a href="https://unsplash.com/@adijoshi11?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Aditya Joshi</a> on <a href="https://unsplash.com/s/photos/white-cake?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+export default function Hero({image, height}) {
+    return <Segment inverted style={{ minHeight: height, margin: 0, backgroundImage: image, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }} basic>
+        {/* <div className='hero-content'>
+            <h1 className='new'>New</h1>
+            <h1 className='product'>Puffy Cakes</h1>
+            <h1 className='collections'>Collections</h1>
+        </div> */}
+
+    </Segment>
 }

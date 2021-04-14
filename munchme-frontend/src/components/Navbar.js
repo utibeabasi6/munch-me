@@ -1,55 +1,15 @@
-import { useState } from 'react';
-import { createMedia } from '@artsy/fresnel'
 import { Link } from 'react-router-dom';
-import { Menu, Button, Container, Icon } from 'semantic-ui-react';
+import { Menu, Container, Header, Segment } from 'semantic-ui-react';
 
-const { MediaContextProvider, Media } = createMedia({
-    breakpoints: {
-        mobile: 0,
-        tablet: 768,
-        computer: 1024,
-    },
-})
-
-export default function Navbar({ mobile }) {
-    const [visible, setvisible] = useState(false)
-    return < MediaContextProvider >
-        <Media at='mobile'><Menu inverted size='small' style={{ borderRadius: 0, margin: 0 }}>
-            <Container>
-
-                <Menu.Item onClick={() => setvisible(!visible)}>
-                    <Icon name='sidebar' />
-                </Menu.Item>
-                <Menu.Item position='right'>
-                    <Button as='a' inverted>
-                        Log in
-        </Button>
-                    <Button as='a' inverted style={{ marginLeft: '0.5em' }}>
-                        Sign Up
-        </Button>
-                </Menu.Item>
-            </Container>
-
-        </Menu></Media>
-        <Media greaterThan='mobile'><Menu borderless inverted size='large' style={{ borderRadius: 0, margin: 0 }}>
-            <Container>
-
-                <Menu.Item content='Home' icon='home' as={Link} to='/home' />
-                <Menu.Item content='Order' icon='birthday cake' as={Link} to='/order' />
-                <Menu.Item content='About' icon='id card outline' as={Link} to='/about' />
-                <Menu.Item position='right'>
-                    <Button as='a' inverted>
-                        Log in
-        </Button>
-                    <Button as='a' inverted style={{ marginLeft: '0.5em' }}>
-                        Sign Up
-        </Button>
-                </Menu.Item>
-            </Container>
-
-        </Menu></Media>
-    </MediaContextProvider >
-
+export default function Navbar() {
+    return <Container><Segment basic>
+        <Container textAlign='center'><Header as='h1' style={{ padding: '40px 0', fontSize: 40 }}>Munch Me Stores</Header></Container>
+        <Menu fluid secondary style={{ padding: 0, fontWeight: '100', justifyContent: 'center', borderTop: '1px solid #ccc', borderBottom: '1px solid #ccc' }}>
+            <Menu.Item as={Link} to='/' style={{ padding: 10, textTransform: 'uppercase', margin: '0 10px' }}>Home</Menu.Item>
+            <Menu.Item as={Link} to='/all' style={{ padding: 10, textTransform: 'uppercase', margin: '0 10px' }}>All</Menu.Item>
+            <Menu.Item as={Link} to='/cart' style={{ padding: 10, textTransform: 'uppercase', margin: '0 10px' }}>Cart</Menu.Item>
+        </Menu>
+    </Segment></Container>
 
 }
 
