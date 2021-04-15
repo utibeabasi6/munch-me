@@ -1,16 +1,17 @@
 import Navbar from "../components/Navbar";
 import { withRouter } from 'react-router-dom'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Container, Loader, Grid, Header, Message, Segment, Dimmer, Image, Button, Input } from "semantic-ui-react";
 import axios from 'axios'
 import Contact from '../components/Contact'
-import { addToCart } from '../components/Cart'
+import { addToCart, CartContext } from "../components/Cart";
 
 function SingleProductsPage(props) {
     const id = props.match.params.id
     const [data, setdata] = useState(null)
     const [error, seterror] = useState(null)
     const [quantity, setquantity] = useState(1)
+    const { setvalue } = useContext(CartContext)
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/api/cakes/' + id).then(res => setdata(res.data)).catch(err => seterror(err));
     }, [id]);
@@ -42,7 +43,7 @@ function SingleProductsPage(props) {
                                 }} />
                             </div>
                             <Button onClick={() => {
-                                addToCart(data, quantity)
+                                setvalue(addToCart(data, quantity))
                             }}> Add to Cart</Button></Grid.Column></Grid></Segment> : <Segment basic style={{ minHeight: 100, }}>
                         <Dimmer active>
                             <Loader size='small'>Loading</Loader>

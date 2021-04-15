@@ -1,6 +1,8 @@
 import _ from 'lodash';
+import { createContext } from 'react';
 
 export function addToCart(cake, quantity) {
+    if (cake === undefined || quantity === undefined) return 0
     let cart = sessionStorage.getItem('cart');
     let cartId = sessionStorage.getItem('cartId');
     if (cart == null || cartId == null) {
@@ -24,6 +26,7 @@ export function addToCart(cake, quantity) {
             sessionStorage.setItem('cart', JSON.stringify({ 'items': cart['items'] }))
         }
     }
+    return getTotalItemsInCart()
 }
 
 export function getCart() {
@@ -41,10 +44,12 @@ export function removeFromCart(cake) {
         sessionStorage.setItem('cart', JSON.stringify({ 'items': cart['items'] }));
         sessionStorage.setItem('cartId', JSON.stringify({ 'items': cartId['items'] }));
     }
+    return getTotalItemsInCart()
 }
 
 export function getTotalItemsInCart() {
     let cart = JSON.parse(sessionStorage.getItem('cart'))
+    if (!cart) return 0
     let totalQuantity = 0
     for (let i = 0; i < cart['items'].length; i++) {
         const element = cart['items'][i];
@@ -54,3 +59,5 @@ export function getTotalItemsInCart() {
     return totalQuantity
 }
 
+
+export const CartContext = createContext(0)

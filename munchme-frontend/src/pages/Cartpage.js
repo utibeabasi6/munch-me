@@ -1,12 +1,14 @@
 import { Button, Card, Container, Grid, Header, Message, Segment } from "semantic-ui-react";
 import Navbar from "../components/Navbar";
-import { removeFromCart, getCart } from '../components/Cart';
+import { removeFromCart, CartContext, getCart } from '../components/Cart';
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 export default function Cartpage() {
-    const [cart, setcart] = useState(getCart());
-    return <><Navbar mobile={window.innerWidth <= 750} />
+    const [cart, setCart] = useState(getCart())
+    const { setvalue } = useContext(CartContext)
+    return <>
+        <Navbar />
         <Segment basic>
             <Container textAlign='center'>
                 <Header as='h2' content='Order page' />
@@ -26,8 +28,8 @@ export default function Cartpage() {
                     header={value['name']}
                     description={value['description']}
                     extra={<Button basic color='red' onClick={() => {
-                        removeFromCart(value);
-                        setcart(getCart())
+                        setvalue(removeFromCart(value))
+                        setCart(getCart())
                     }}>
                         Remove from cart
                   </Button>}
