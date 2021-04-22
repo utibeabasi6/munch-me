@@ -9,11 +9,11 @@ client = contentful.Client("60v12cewnswn", "R0wjyFRPrCgmllgHWNXPWFXFtehzopuJUR9p
 def cakes(request, methods=["GET"]):
     cakes = client.entries({"content_type": "cake"})
     print(cakes[0].name)
-    return JsonResponse({"cakes": [{"name": cake.name, "description": cake.description, "rating": cake.rating, "image": 'https:' + cake.image.url(), "price": cake.price} for cake in cakes]})
+    return JsonResponse({"cakes": [{"id": cake.id, "name": cake.name, "description": cake.description, "rating": cake.rating, "image": 'https:' + cake.image.url(), "price": cake.price} for cake in cakes]})
 
 def cake(request, id):
     cake = client.entry(id)
-    return JsonResponse({"name": cake.name, "description": cake.description, "rating": cake.rating, "image": 'https:' + cake.image.url(), "price": cake.price})
+    return JsonResponse({"id": cake.id, "name": cake.name, "description": cake.description, "rating": cake.rating, "image": 'https:' + cake.image.url(), "price": cake.price})
 
 @csrf_exempt
 def send_email(request):

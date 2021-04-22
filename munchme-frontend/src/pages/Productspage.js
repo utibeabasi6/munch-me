@@ -11,7 +11,7 @@ export default function Productspage() {
     const [error, seterror] = useState(null)
     const [filterValue, setFilterValue] = useState(200)
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/cakes').then(res => setdata(res.data)).catch(err => seterror(err));
+        axios.get('https://munchme.herokuapp.com/api/cakes').then(res => setdata(res.data)).catch(err => seterror(err));
     }, []);
 
     return <>
@@ -21,7 +21,7 @@ export default function Productspage() {
                 error ? <Message negative>
                     <Message.Header>Sorry, an error occured!</Message.Header>
                 </Message> : data ? <Segment basic textAlign='center'>
-                    <Container textAlign='center'><Grid stackable columns={3}>{data['results'].filter((e) => e.price < filterValue).map((value, index) => <Grid.Column key={index}><Card
+                    <Container textAlign='center'><Grid stackable columns={3}>{data['cakes'].filter((e) => e.price < filterValue).map((value, index) => <Grid.Column key={index}><Card
                         style={{ borderRadius: 0, border: 'none', boxShadow: 'none' }}
                         meta={value['price'] + ' Naira'}
                         centered

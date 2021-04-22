@@ -13,7 +13,7 @@ export function CakeSection() {
     return <Segment basic textAlign='center'>
         {error ? <Message negative>
             <Message.Header>Sorry, an error occured!</Message.Header>
-        </Message> : data ? <Grid textAlign='center' stackable columns={4}> {data['cakes'].slice(0, 4).map((value, index) => <Grid.Column key={index}><Card
+        </Message> : data ? <><Grid textAlign='center' stackable columns={4}> {data['cakes'].slice(0, 4).map((value, index) => <Grid.Column key={index}><Card
             style={{ borderRadius: 0, border: 'none', boxShadow: 'none' }}
             meta={value['price'] + ' Naira'}
             centered
@@ -21,7 +21,7 @@ export function CakeSection() {
             header={value['name']}
             description={<Rating defaultRating={value['rating']} maxRating={5} disabled />}
             extra={<Button as={Link} to={'/view/' + value.id} color='green' basic content='View Cake' />}
-        /></Grid.Column>)}<Button as={Link} style={{ margin: 20 }} to='/all' content='View all' size='large' /> </Grid> : <Segment style={{ minHeight: 100 }}>
+        /></Grid.Column>)}</Grid><Button as={Link} style={{ margin: 20 }} to='/all' content='View all' size='large' /> </> : <Segment style={{ minHeight: 100 }}>
             <Dimmer active>
                 <Loader size='small'>Loading</Loader>
             </Dimmer>

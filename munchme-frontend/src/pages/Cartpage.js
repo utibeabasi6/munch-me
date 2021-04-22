@@ -1,16 +1,16 @@
 import { Button, Container, Form, Grid, Header, Image, Input, Message, Segment, Table } from "semantic-ui-react";
 import Navbar from "../components/Navbar";
-import { getTotalPriceInCart, CartContext, getCart, removeFromCart, getTotalItemsInCart, addToCart, decrementFromCart } from '../components/Cart';
+import { getTotalPriceInCart, CartContext, getCart, removeFromCart, getTotalItemsInCart, addToCart, decrementFromCart, clearCart } from '../components/Cart';
 import { useContext, useState } from "react";
 import axios from "axios";
-import { usePaystackPayment } from "react-paystack";
+import { PaystackButton } from "react-paystack";
 
 export default function Cartpage() {
     const [cart, setCart] = useState(getCart())
     const [totalPrice, setTotalPrice] = useState(getTotalPriceInCart())
     const { setvalue } = useContext(CartContext)
     const publicKey = "pk_test_18ac22cb2da3a4a97b91c5caf00eeb905fc04571"
-    const amount = totalPrice
+    const amount = totalPrice * 100
     const [email, setEmail] = useState("")
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
@@ -21,14 +21,15 @@ export default function Cartpage() {
             name,
             phone,
         },
-        publicKey
+        publicKey,
+
+        onSuccess: (e) => {
+            clearCart()
+            axios.post('https://munchme.herokuapp.com/api/send_email/', { email: email })
+            window.location.pathname = '/'
+        },
+        onClose: () => alert("Wait! You need these cakes, don't go!!!!")
     }
-    const onSuccess = (e) => {
-        axios.post('https://munchme.herokuapp.com/api/send_email/', { email: email })
-        window.location.pathname = '/'
-    }
-    const onClose = () => alert("Wait! You need this oil, don't go!!!!")
-    const initializePayment = usePaystackPayment(componentProps)
 
     return <>
         <Navbar />
@@ -104,7 +105,7 @@ export default function Cartpage() {
                                 value={phone}
                                 onChange={(e) => setPhone(e.target.value)}
                             /><br /><br />
-                            <Button fluid onClick={() => initializePayment(onSuccess(), onClose())} content='Order Now' {...componentProps} />
+                            <Button fluid as={PaystackButton} content='Order Now' {...componentProps} />
                         </Form>
                     </Grid.Column>
                     <Grid.Column width={4}><Grid columns={2}>
@@ -120,7 +121,7 @@ export default function Cartpage() {
                         </Grid.Column>
                     </Grid></Grid.Column>
                 </Grid>
-            </Container> : <Container><Message negative>
+            </Container> : <Container><Message>
                 <Message.Header>Sorry, Your cart is empty</Message.Header>
             </Message></Container>}
         </Segment>

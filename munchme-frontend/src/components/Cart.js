@@ -85,3 +85,7 @@ export function decrementFromCart(cake, quantity) {
         sessionStorage.setItem('cart', JSON.stringify({ 'items': cart['items'] }))
     }
 }
+
+export function clearCart() {
+    sessionStorage.clear()
+}
