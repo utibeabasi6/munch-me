@@ -1,4 +1,4 @@
-import { Segment, Grid, List } from 'semantic-ui-react'
+import { Segment, List } from 'semantic-ui-react'
 import Hero from './Hero'
 
 export default function Contact() {
