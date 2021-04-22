@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import { withRouter } from 'react-router-dom'
 import { useState, useEffect, useContext } from "react";
-import { Container, Loader, Grid, Header, Message, Segment, Dimmer, Image, Button, Input } from "semantic-ui-react";
+import { Container, Loader, Grid, Header, Message, Segment, Dimmer, Image, Button, Input, Rating } from "semantic-ui-react";
 import axios from 'axios'
 import Contact from '../components/Contact'
 import { addToCart, CartContext } from "../components/Cart";
@@ -27,22 +27,28 @@ function SingleProductsPage(props) {
                             <Header as='h1' style={{ fontSize: 40, lineHeight: 1.4, letterSpacing: 1.5 }}>{data['name']}</Header>
                             <Header as='h3' style={{ fontSize: 30, lineHeight: 1.4, letterSpacing: 1.5 }}>{data['price'] + ' Naira'}</Header>
                             <Header as='p' style={{ letterSpacing: 1.5, color: '#111', fontWeight: '200' }}>{data['description']}</Header>
+                            <Rating defaultRating={data['rating']} maxRating={5} disabled />
                             <div style={{ marginBottom: 20 }}>
-                                <Button attatched='left' icon='add' onClick={() => {
+                                <Button attatched='left' compact circular basic icon='add' onClick={() => {
                                     let q = document.getElementById('quantity')
                                     if (q.value <= 10) {
                                         setquantity(parseInt(q.value) + 1)
                                     }
                                 }} />
-                                <Input min={1} max={10} id='quantity' type='number' style={{ width: 100, margin: '0 5px' }} value={quantity} onChange={(e) => setquantity(e.target.value)} />
-                                <Button attatched='right' icon='minus' onClick={() => {
+                                <Input min={1} max={10} id='quantity' type='number' style={{ width: 100, margin: '0 5px' }} value={quantity} onChange={(e) => {
+                                    if (parseInt(e.target.value) <= 10) {
+                                        setquantity(parseInt(e.target.value))
+                                    }
+
+                                }} />
+                                <Button attatched='right' compact circular basic icon='minus' onClick={() => {
                                     let q = document.getElementById('quantity')
                                     if (q.value >= 1) {
                                         setquantity(parseInt(q.value) - 1)
                                     }
                                 }} />
                             </div>
-                            <Button onClick={() => {
+                            <Button color='green' onClick={() => {
                                 setvalue(addToCart(data, quantity))
                             }}> Add to Cart</Button></Grid.Column></Grid></Segment> : <Segment basic style={{ minHeight: 100, }}>
                         <Dimmer active>

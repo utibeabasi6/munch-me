@@ -59,5 +59,29 @@ export function getTotalItemsInCart() {
     return totalQuantity
 }
 
+export function getTotalPriceInCart() {
+    let cart = JSON.parse(sessionStorage.getItem('cart'))
+    if (!cart) return 0
+    let totalPrice = 0
+    for (let i = 0; i < cart['items'].length; i++) {
+        const element = cart['items'][i];
+        totalPrice += element['price'] * element['quantity']
 
-export const CartContext = createContext(0)
+    }
+    return totalPrice
+}
+
+export const CartContext = createContext(getTotalItemsInCart())
+
+export function decrementFromCart(cake, quantity) {
+    let cart = JSON.parse(sessionStorage.getItem('cart'));
+    let c = _.find(cart['items'], (c) => c.id === cake.id)
+    let index = cart['items'].findIndex((c) => c.id === cake.id)
+    c['quantity'] -= quantity
+    cart['items'].splice(index, 1, c)
+    if (c['quantity'] < 1) {
+        removeFromCart(cake)
+    } else {
+        sessionStorage.setItem('cart', JSON.stringify({ 'items': cart['items'] }))
+    }
+}

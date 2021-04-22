@@ -1,4 +1,4 @@
-import { Segment, Card, Button, Grid, Dimmer, Loader, Message } from 'semantic-ui-react';
+import { Segment, Card, Button, Grid, Dimmer, Loader, Message, Rating } from 'semantic-ui-react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -14,12 +14,13 @@ export function CakeSection() {
         {error ? <Message negative>
             <Message.Header>Sorry, an error occured!</Message.Header>
         </Message> : data ? <Grid textAlign='center' stackable columns={4}> {data['results'].slice(0, 4).map((value, index) => <Grid.Column key={index}><Card
-            style={{ borderRadius: 0, border: 'none' }}
+            style={{ borderRadius: 0, border: 'none', boxShadow: 'none' }}
+            meta={value['price'] + ' Naira'}
             centered
             image={value['image']}
             header={value['name']}
-            description={value['price'] + ' Naira'}
-            extra={<Button as={Link} to={'/view/' + value.id} content='View Cake' basic />}
+            description={<Rating defaultRating={value['rating']} maxRating={5} disabled />}
+            extra={<Button as={Link} to={'/view/' + value.id} color='green' basic content='View Cake' />}
         /></Grid.Column>)}<Button as={Link} style={{ margin: 20 }} to='/all' content='View all' size='large' /> </Grid> : <Segment style={{ minHeight: 100 }}>
             <Dimmer active>
                 <Loader size='small'>Loading</Loader>

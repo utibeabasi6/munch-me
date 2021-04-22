@@ -1,18 +1,23 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from rest_framework import viewsets
 from rest_framework.response import Response
-from .serializers import CakeSerializer
-from .models import Cake
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
+from rest_framework import status
+import contentful
 
+client = contentful.Client("60v12cewnswn", "R0wjyFRPrCgmllgHWNXPWFXFtehzopuJUR9pjm-msjA")
 
 # Create your views here.
-
-class CakeViewSet(viewsets.ModelViewSet):
-    serializer_class = CakeSerializer
-    queryset = Cake.objects.all()
+@api_view(['GET'])
+def cakes(request):
+    try:
+        cakes = client.entries({"content_type": "cake"})
+        return Response({
+            "cakes": [{"name": cake.name, "description": cake.description, "rating": cake.rating, "image": 'https:' + cake.image.url(), "price": cake.price} for cake in cakes]
+        }, status=HTTP_200_OK)
+    except:
+        return Response("sorry, an error ocurred", status=status.HTTP_400_BAD_REQUEST)
 
 @csrf_exempt
 def send_email(request):

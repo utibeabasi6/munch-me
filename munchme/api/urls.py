@@ -1,13 +1,10 @@
 from django.urls import path, include
-from .views import CakeViewSet, send_email
+from views import send_email, cakes
 from rest_framework import routers
-
-router = routers.DefaultRouter()
-router.register(r'cakes', CakeViewSet)
 
 app_name = 'api'
 urlpatterns = [
-    path('', include(router.urls)),
-    path('send_email/', send_email)
+    path('send_email/', views.send_email),
+    path('cakes/', views.cakes)
 
 ]
