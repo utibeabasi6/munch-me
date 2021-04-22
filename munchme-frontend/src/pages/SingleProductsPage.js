@@ -13,7 +13,7 @@ function SingleProductsPage(props) {
     const [quantity, setquantity] = useState(1)
     const { setvalue } = useContext(CartContext)
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/cakes/' + id).then(res => setdata(res.data)).catch(err => seterror(err));
+        axios.get('https://munchme.herokuapp.com/api/cakes/' + id).then(res => setdata(res.data)).catch(err => seterror(err));
     }, [id]);
     return (
         <>

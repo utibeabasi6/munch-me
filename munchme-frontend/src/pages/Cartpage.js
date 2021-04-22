@@ -24,7 +24,7 @@ export default function Cartpage() {
         publicKey
     }
     const onSuccess = (e) => {
-        axios.post('http://localhost:8000/api/send_email/', { email: email })
+        axios.post('https://munchme.herokuapp.com/api/send_email/', { email: email })
         window.location.pathname = '/'
     }
     const onClose = () => alert("Wait! You need this oil, don't go!!!!")

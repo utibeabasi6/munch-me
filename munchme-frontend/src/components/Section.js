@@ -7,13 +7,13 @@ export function CakeSection() {
     const [error, seterror] = useState(null)
     const [data, setdata] = useState(null)
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/cakes').then(res => setdata(res.data)).catch(err => seterror(err));
+        axios.get('https://munchme.herokuapp.com/api/cakes').then(res => setdata(res.data)).catch(err => seterror(err));
     }, []);
 
     return <Segment basic textAlign='center'>
         {error ? <Message negative>
             <Message.Header>Sorry, an error occured!</Message.Header>
-        </Message> : data ? <Grid textAlign='center' stackable columns={4}> {data['results'].slice(0, 4).map((value, index) => <Grid.Column key={index}><Card
+        </Message> : data ? <Grid textAlign='center' stackable columns={4}> {data['cakes'].slice(0, 4).map((value, index) => <Grid.Column key={index}><Card
             style={{ borderRadius: 0, border: 'none', boxShadow: 'none' }}
             meta={value['price'] + ' Naira'}
             centered
