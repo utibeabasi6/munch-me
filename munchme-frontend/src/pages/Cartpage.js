@@ -121,7 +121,7 @@ export default function Cartpage() {
                         </Grid.Column>
                     </Grid></Grid.Column>
                 </Grid>
-            </Container> : <Container><Message>
+            </Container> : <Container textAlign='center'><Message>
                 <Message.Header>Sorry, Your cart is empty</Message.Header>
             </Message></Container>}
         </Segment>

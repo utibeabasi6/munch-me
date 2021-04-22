@@ -18,9 +18,9 @@ export default function Productspage() {
         <Navbar />
         <Container><Grid stackable><Grid.Column width={12}>
             {
-                error ? <Message negative>
+                error ? <Container textAlign='center'><Message negative>
                     <Message.Header>Sorry, an error occured!</Message.Header>
-                </Message> : data ? <Segment basic textAlign='center'>
+                </Message></Container> : data ? <Segment basic textAlign='center'>
                     <Container textAlign='center'><Grid stackable columns={3}>{data['cakes'].filter((e) => e.price < filterValue).map((value, index) => <Grid.Column key={index}><Card
                         style={{ borderRadius: 0, border: 'none', boxShadow: 'none' }}
                         meta={value['price'] + ' Naira'}

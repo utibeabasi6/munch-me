@@ -135,6 +135,7 @@ REST_FRAMEWORK = {
 # Allow request from react frontend
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
+    'https://munchme.netlify.app'
 ]
 
 CORS_ALLOW_METHODS = (

@@ -20,9 +20,9 @@ function SingleProductsPage(props) {
             <Navbar />
             <Container style={{ marginBottom: 40 }}>
                 {
-                    error ? <Message negative>
+                    error ? <Container textAlign='center'><Message negative >
                         <Message.Header>Sorry, an error occured!</Message.Header>
-                    </Message> : data ? <Segment basic textAlign='left'><Grid stackable columns='equal'><Grid.Column width={5}> <Image src={data['image']} size='large' />
+                    </Message></Container> : data ? <Segment basic textAlign='left'><Grid stackable columns='equal'><Grid.Column width={5}> <Image src={data['image']} size='large' />
                     </Grid.Column><Grid.Column>
                             <Header as='h1' style={{ fontSize: 40, lineHeight: 1.4, letterSpacing: 1.5 }}>{data['name']}</Header>
                             <Header as='h3' style={{ fontSize: 30, lineHeight: 1.4, letterSpacing: 1.5 }}>{data['price'] + ' Naira'}</Header>
