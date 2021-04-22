@@ -11,12 +11,12 @@ function App() {
   const cartQuantity = useMemo(() => ({ value, setvalue }), [value, setvalue])
   return (
     <CartContext.Provider value={cartQuantity}>
-      <Router><Switch>
+      <Router>
         <Route exact path='/'><Homepage /></Route>
         <Route exact path='/cart'><Cartpage /></Route>
         <Route exact path='/all'><Productspage /></Route>
         <Route exact path='/view/:id'><SingleProductsPage /></Route>
-      </Switch></Router>
+      </Router>
     </CartContext.Provider>
   );
 }
