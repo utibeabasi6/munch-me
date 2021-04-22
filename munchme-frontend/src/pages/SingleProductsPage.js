@@ -50,6 +50,7 @@ function SingleProductsPage(props) {
                             </div>
                             <Button color='green' onClick={() => {
                                 setvalue(addToCart(data, quantity))
+                                alert("Cart updated")
                             }}> Add to Cart</Button></Grid.Column></Grid></Segment> : <Segment basic style={{ minHeight: 100, }}>
                         <Dimmer active>
                             <Loader size='small'>Loading</Loader>

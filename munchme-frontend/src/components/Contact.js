@@ -4,49 +4,21 @@ import Hero from './Hero'
 export default function Contact() {
   return (<>
     <Hero image={'url(/top-view-of-chocolate-cake-with-raspberry-coulis.jpg)'} height='50vh' />
-    <Grid stackable columns={3}>
+    <Grid textAlign='center' stackable columns={1}>
       <Grid.Column>
         <Segment basic>
           <List>
-            <List.Item icon='users' content='Semantic UI' />
-            <List.Item icon='marker' content='New York, NY' />
+            <List.Item icon='users' content='Utibeabasi Umanah' />
+            <List.Item icon='marker' content='Nigeria' />
             <List.Item
               icon='mail'
-              content={<a href='mailto:jack@semantic-ui.com'>jack@semantic-ui.com</a>}
+              content={<a href='mailto:utibeabasiumanah6@gmail.com'>utibeabasiumanah6@gmail.com</a>}
             />
             <List.Item
               icon='linkify'
-              content={<a href='http://www.semantic-ui.com'>semantic-ui.com</a>}
+              content={<a href='https://portfolio-3c6e1.web.app/'>Utibeabasi Umanah</a>}
             />
           </List></Segment>
-      </Grid.Column>
-      <Grid.Column>
-        <Segment basic><List>
-          <List.Item icon='users' content='Semantic UI' />
-          <List.Item icon='marker' content='New York, NY' />
-          <List.Item
-            icon='mail'
-            content={<a href='mailto:jack@semantic-ui.com'>jack@semantic-ui.com</a>}
-          />
-          <List.Item
-            icon='linkify'
-            content={<a href='http://www.semantic-ui.com'>semantic-ui.com</a>}
-          />
-        </List></Segment>
-      </Grid.Column>
-      <Grid.Column>
-        <Segment basic><List>
-          <List.Item icon='users' content='Semantic UI' />
-          <List.Item icon='marker' content='New York, NY' />
-          <List.Item
-            icon='mail'
-            content={<a href='mailto:jack@semantic-ui.com'>jack@semantic-ui.com</a>}
-          />
-          <List.Item
-            icon='linkify'
-            content={<a href='http://www.semantic-ui.com'>semantic-ui.com</a>}
-          />
-        </List></Segment>
       </Grid.Column>
     </Grid></>
   )
