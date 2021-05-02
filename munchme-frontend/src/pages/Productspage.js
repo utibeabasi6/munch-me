@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
+import { CustomButton } from '../components/CustomButton';
 
 
 export default function Productspage() {
@@ -27,9 +28,7 @@ export default function Productspage() {
                         image={value['image']}
                         header={value['name']}
                         description={<Rating defaultRating={value['rating']} maxRating={5} disabled />}
-                        extra={<Button basic color='green' as={Link} to={'/view/' + value.id}>
-                            View Item
-                  </Button>
+                        extra={<CustomButton as={Link} to={'/view/' + value.id} content='View Cake'/>
                         }
                     /></Grid.Column>)}</Grid></Container>
                 </Segment> : <Segment basic style={{ minHeight: 100 }}>

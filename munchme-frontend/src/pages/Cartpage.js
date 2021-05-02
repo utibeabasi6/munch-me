@@ -106,7 +106,7 @@ export default function Cartpage() {
                                 value={phone}
                                 onChange={(e) => setPhone(e.target.value)}
                             /><br /><br />
-                            <CustomButton fluid as={PaystackButton} content='Order Now' {...componentProps} />
+                            <CustomButton as={PaystackButton} content='Order Now' {...componentProps} />
                         </Form>
                     </Grid.Column>
                     <Grid.Column width={4}><Grid columns={2}>
