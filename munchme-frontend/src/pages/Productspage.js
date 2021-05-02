@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
-import Contact from '../components/Contact'
 
 
 export default function Productspage() {
@@ -38,14 +37,11 @@ export default function Productspage() {
                         <Loader size='small'>Loading</Loader>
                     </Dimmer>
                 </Segment>}</Grid.Column><Grid.Column width={4}>
-                <Header style={{ letterSpacing: 1.5, textTransform: 'uppercase' }}>Special Sale</Header>
-                <Header as='p' style={{ letterSpacing: 1.5, color: '#aaa', fontWeight: '200' }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam libero iusto nemo laboriosam perferendis voluptas ullam officiis, quibusdam quas quam eveniet est fugit delectus corporis incidunt nam esse suscipit itaque?</Header>
-                <Header style={{ letterSpacing: 1.5 }}>Filter by price</Header>
-                <Header as='p' style={{ letterSpacing: 1.5, color: '#222', fontWeight: '200' }}>Max price: {filterValue} Naira</Header>
+                <Header>Filter by price</Header>
+                <p>Max price: {filterValue} Naira</p>
                 <Input type='range' min={0} max={300} value={filterValue} step={0.1} onChange={(e) => setFilterValue(parseInt(e.target.value))} />
             </Grid.Column>
         </Grid>
         </Container>
-        <Contact />
     </>
 }

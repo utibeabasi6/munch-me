@@ -1,20 +1,22 @@
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
+import { AboutSection, CakeSection } from '../components/Section';
+import { Container, Header } from 'semantic-ui-react';
+import { CustomHeader } from '../components/CustomHeader';
 import Contact from '../components/Contact';
-import { CakeSection, AboutSection } from '../components/Section';
-import { Container, Divider } from 'semantic-ui-react';
 
 export default function Homepage() {
-    var mobile = window.innerWidth <= 750
     return <>
         <Navbar />
-        <Container>
-            <Hero image={'url(/smores-cake-slice.jpg)'} height='50vw' />
+            <Hero/>
+            <Container style={{width: "80vw"}}>
+            <CustomHeader text="Products" />
+            <Header.Content style={{textAlign: 'center'}}> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua.</Header.Content>
+            <CakeSection/>
+            <CustomHeader text="About us" />
             <AboutSection />
-            <Hero image={'url(/happy-birthday-mark-cake.jpg)'} height='50vw' />
-            <Divider style={{ fontSize: 18 }} section horizontal content='Featured Products' />
-            <CakeSection sectionTitle='Trendy cakes' mobile={mobile} />
         </Container>
-        <Contact />
+        <Contact/>
     </>
 }

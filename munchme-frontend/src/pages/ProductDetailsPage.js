@@ -6,7 +6,7 @@ import axios from 'axios'
 import Contact from '../components/Contact'
 import { addToCart, CartContext } from "../components/Cart";
 
-function SingleProductsPage(props) {
+function ProductDetailsPage(props) {
     const id = props.match.params.id
     const [data, setdata] = useState(null)
     const [error, seterror] = useState(null)
@@ -61,5 +61,5 @@ function SingleProductsPage(props) {
     )
 }
 
-export default withRouter(SingleProductsPage)
+export default withRouter(ProductDetailsPage)
 

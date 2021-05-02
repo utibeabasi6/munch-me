@@ -4,6 +4,7 @@ import { getTotalPriceInCart, CartContext, getCart, removeFromCart, getTotalItem
 import { useContext, useState } from "react";
 import axios from "axios";
 import { PaystackButton } from "react-paystack";
+import { CustomButton } from "../components/CustomButton";
 
 export default function Cartpage() {
     const [cart, setCart] = useState(getCart())
@@ -105,7 +106,7 @@ export default function Cartpage() {
                                 value={phone}
                                 onChange={(e) => setPhone(e.target.value)}
                             /><br /><br />
-                            <Button fluid as={PaystackButton} content='Order Now' {...componentProps} />
+                            <CustomButton fluid as={PaystackButton} content='Order Now' {...componentProps} />
                         </Form>
                     </Grid.Column>
                     <Grid.Column width={4}><Grid columns={2}>
