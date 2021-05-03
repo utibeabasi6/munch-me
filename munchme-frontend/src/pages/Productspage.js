@@ -1,4 +1,4 @@
-import { Segment, Container, Header, Grid, Card, Button, Loader, Dimmer, Message, Input, Rating } from 'semantic-ui-react';
+import { Segment, Container, Header, Grid, Card, Loader, Dimmer, Message, Input, Rating } from 'semantic-ui-react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
@@ -28,7 +28,7 @@ export default function Productspage() {
                         image={value['image']}
                         header={value['name']}
                         description={<Rating defaultRating={value['rating']} maxRating={5} disabled />}
-                        extra={<CustomButton as={Link} to={'/view/' + value.id} content='View Cake'/>
+                        extra={<CustomButton as={Link} to={'/view/' + value.id} content='View Cake' />
                         }
                     /></Grid.Column>)}</Grid></Container>
                 </Segment> : <Segment basic style={{ minHeight: 100 }}>
