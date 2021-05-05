@@ -25,12 +25,13 @@ SECRET_KEY = 'ok*v8-ne9o&qq5zi1s#i&+#e%^)=&w=1c&50inbgr(@k2v1^o)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['munchme.herokuapp.com']
+ALLOWED_HOSTS = ['munchme.herokuapp.com','127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -135,7 +136,8 @@ REST_FRAMEWORK = {
 # Allow request from react frontend
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
-    'https://munchme.netlify.app'
+    'https://munchme.netlify.app',
+    'http://192.168.43.7'
 ]
 
 CORS_ALLOW_METHODS = (

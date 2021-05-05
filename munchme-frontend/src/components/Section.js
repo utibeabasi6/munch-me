@@ -1,25 +1,23 @@
-import { Segment, Card, Button, Grid, Dimmer, Loader, Message, Rating, Image, Header } from 'semantic-ui-react';
+import { Segment, Grid, Dimmer, Loader, Message, Image, Header } from 'semantic-ui-react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { CustomButton } from './CustomButton';
+import CakeModal from './CakeModal';
 
 export function CakeSection() {
     const [error, seterror] = useState(null)
     const [data, setdata] = useState(null)
+
     useEffect(() => {
         axios.get('https://munchme.herokuapp.com/api/cakes').then(res => setdata(res.data)).catch(err => seterror(err));
     }, []);
     return <Segment basic textAlign='center'>
         {error ? <Message negative>
             <Message.Header>Sorry, an error occured!</Message.Header>
-        </Message> : data ? <><Grid textAlign='center' stackable columns={4}> {data['cakes'].slice(0, 4).map((value, index) => <Grid.Column key={index}><Card
-            style={{ borderRadius: 0, border: 'none', boxShadow: 'none' }}
-            meta={value['price'] + ' Naira'}
-            centered
-            image={value['image']}
-            header={value['name']}
-            description={<Rating defaultRating={value['rating']} maxRating={5} disabled />}
-        /></Grid.Column>)}</Grid><Button as={Link} style={{ margin: 20 }} to='/cakes' content='View all' size='large' /> </> : <Segment style={{ minHeight: 100 }}>
+        </Message> : data ? <><Grid textAlign='center' stackable columns={3}> {data['cakes'].map((value, index) => <Grid.Column key={index}>
+            <CakeModal value={value} index={index} />
+        </Grid.Column>)}</Grid><CustomButton as={Link} to='/cakes' content='View all' size='large' /> </> : <Segment style={{ minHeight: 100 }}>
             <Dimmer active>
                 <Loader size='small'>Loading</Loader>
             </Dimmer>

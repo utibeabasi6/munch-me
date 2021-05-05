@@ -1,10 +1,9 @@
 from django.urls import path, include
-from .views import send_email, cakes, cake
+from .views import CakeView, CakeDetail
 
 app_name = 'api'
 urlpatterns = [
-    path('send_email/', send_email),
-    path('cakes/', cakes),
-    path('cakes/<str:id>', cake)
+    path('cakes/', CakeView.as_view()),
+    path('cakes/<str:id>', CakeDetail.as_view())
 
 ]
