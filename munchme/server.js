@@ -1,13 +1,15 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const authRoutes = require('./routes/auth')
 const apiRoutes = require('./routes/api')
 
 const app = express()
-const mongoUrl = 'mongodb://127.0.0.1:27017/munchme'
+const mongoUrl = 'mongodb+srv://utibeabasi:Utibeabasi6@cluster0.eouyb.mongodb.net/munchme'
 const port = process.env.PORT || 3001
 
+app.use(cors())
 app.use(bodyParser.json())
 app.use('/auth', authRoutes)
 app.use('/api', apiRoutes)
