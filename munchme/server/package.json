@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "contentful": "^8.3.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.5",
+    "validator": "^13.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "name": "munchme",
+  "version": "1.0.0",
+  "description": "A trello clone",
+  "main": "server.js",
+  "author": "Utibeabasi Umanah",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "nodemon server"
+  }
+}
