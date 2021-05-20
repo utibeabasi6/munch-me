@@ -20,7 +20,7 @@ export default function CakeModal({ index, value }) {
                 image={value['image']}
                 header={value['name']}
             />}>
-            <Modal.Header>Cake datails</Modal.Header>
+            <Modal.Header>Cake details</Modal.Header>
             <Modal.Content image>
                 <Image size='medium' src={value['image']} wrapped />
                 <Modal.Description>

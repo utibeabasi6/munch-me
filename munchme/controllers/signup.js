@@ -6,7 +6,6 @@ module.exports = (req, res) => {
 }
 
 function handleErrors(err, res) {
-    console.log(err);
     const errors = {
         name: '',
         password: '',

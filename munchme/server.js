@@ -4,9 +4,10 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const authRoutes = require('./routes/auth')
 const apiRoutes = require('./routes/api')
+require('dotenv').config()
 
 const app = express()
-const mongoUrl = 'mongodb+srv://utibeabasi:Utibeabasi6@cluster0.eouyb.mongodb.net/munchme'
+const mongoUrl = process.env.MONGO_DEBUG_URL
 const port = process.env.PORT || 3001
 
 app.use(cors())
