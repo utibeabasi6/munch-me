@@ -1,14 +1,18 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { CartContext } from './Cart';
+import { userIsLoggedIn } from '../services/auth';
+import { CartContext } from '../services/cart';
+import { LoginButton, LogoutButton } from './auth_components';
 
 export default function Navbar() {
-    const { value } = useContext(CartContext)
+    const [isLoggedIn, setIsLoggedIn] = useState(userIsLoggedIn)
+    const { cartValue } = useContext(CartContext)
     return (<nav className='navbar'>
         <NavLink to='/' className='logo'>Munch Me</NavLink>
         <ul>
             <li><NavLink to='/cakes'>Products</NavLink></li>
-            <li><NavLink to='/cart'>Cart <span>{value}</span></NavLink></li>
+            <li><NavLink to='/cart'>Cart <span>{cartValue}</span></NavLink></li>
+            <li>{isLoggedIn ? <LogoutButton setIsLoggedIn={setIsLoggedIn} /> : <LoginButton setIsLoggedIn={setIsLoggedIn} />}</li>
         </ul>
     </nav>)
 }

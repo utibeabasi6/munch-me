@@ -1,9 +1,9 @@
 import { useContext, useState } from "react"
 import { Button, Card, Header, Image, Modal, Rating } from "semantic-ui-react"
-import { addToCart, CartContext } from "./Cart"
+import { addToCart, CartContext } from "../services/cart"
 
 export default function CakeModal({ index, value }) {
-    const { setvalue } = useContext(CartContext)
+    const { setCartValue } = useContext(CartContext)
     const [quantity, setquantity] = useState(1)
     const [cakeId, setCakeId] = useState(null)
     return (
@@ -53,7 +53,7 @@ export default function CakeModal({ index, value }) {
                     content='Add to cart'
                     icon='shopping bag'
                     color='black' onClick={() => {
-                        setvalue(addToCart(value, quantity))
+                        setCartValue(addToCart(value, quantity))
                         alert("Cart updated")
                         setquantity(1)
                         setCakeId(null)

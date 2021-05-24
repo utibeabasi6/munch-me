@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const cakes = require('../controllers/cakes')
-const cakeDetails = require('../controllers/cakeDetails')
-const {ordersGet, ordersPost} = require('../controllers/orders')
+const cakeDetails = require('../controllers/cake_details')
+const { ordersGet, ordersPost } = require('../controllers/orders')
 
 const apiRoutes = Router()
 

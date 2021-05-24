@@ -1,15 +1,18 @@
 import { Button, Container, Form, Grid, Header, Image, Input, Message, Segment, Table } from "semantic-ui-react";
-import Navbar from "../components/Navbar";
-import { getTotalPriceInCart, CartContext, getCart, removeFromCart, getTotalItemsInCart, addToCart, decrementFromCart, clearCart } from '../components/Cart';
+import Navbar from "../components/navbar";
+import { getTotalPriceInCart, CartContext, getCart, removeFromCart, getTotalItemsInCart, addToCart, decrementFromCart, clearCart } from '../services/cart';
 import { useContext, useState } from "react";
 import axios from "axios";
 import { PaystackButton } from "react-paystack";
-import { CustomButton } from "../components/CustomButton";
+import { CustomButton } from "../components/custom_button";
+import { userIsLoggedIn } from "../services/auth";
+import { LoginButton } from "../components/auth_components";
 
 export default function Cartpage() {
+    const [isLoggedIn, setIsLoggedIn] = useState(userIsLoggedIn)
     const [cart, setCart] = useState(getCart())
     const [totalPrice, setTotalPrice] = useState(getTotalPriceInCart())
-    const { setvalue } = useContext(CartContext)
+    const { setCartValue } = useContext(CartContext)
     const publicKey = "pk_test_18ac22cb2da3a4a97b91c5caf00eeb905fc04571"
     const amount = totalPrice * 100
     const [email, setEmail] = useState("")
@@ -27,7 +30,7 @@ export default function Cartpage() {
         onSuccess: (e) => {
             clearCart()
             axios.post('https://munchme.herokuapp.com/api/send_email/', { email: email })
-            window.location.pathname = '/'
+            window.location.assign('/')
         },
         onClose: () => alert("Wait! You need these cakes, don't go!!!!")
     }
@@ -62,24 +65,26 @@ export default function Cartpage() {
                         <Table.Cell>{<Button attatched='left' icon='add' basic circular compact onClick={() => {
                             addToCart(value, 1)
                             setCart(getCart())
-                            setvalue(getTotalItemsInCart())
+                            setCartValue(getTotalItemsInCart())
                             setTotalPrice(getTotalPriceInCart())
                         }} />} {value['quantity']}{<Button attatched='right' basic circular compact icon='minus' style={{ marginLeft: 5 }} onClick={() => {
                             decrementFromCart(value, 1)
                             setCart(getCart())
-                            setvalue(getTotalItemsInCart())
+                            setCartValue(getTotalItemsInCart())
                             setTotalPrice(getTotalPriceInCart())
                         }} />}</Table.Cell>
                         <Table.Cell>{value['price'] * value['quantity'] + ' Naira'}</Table.Cell>
                         <Table.Cell>{<Button basic circular compact icon='x' color='red' onClick={() => {
                             removeFromCart(value)
                             setCart(getCart())
-                            setvalue(getTotalItemsInCart())
+                            setCartValue(getTotalItemsInCart())
                             setTotalPrice(getTotalPriceInCart())
                         }} />}</Table.Cell>
-                    </Table.Row>)}</Table.Body></Table>
+                    </Table.Row>)}
+                    </Table.Body>
+                </Table>
                 <Grid stackable reversed='mobile' columns={2} >
-                    <Grid.Column width={8} >
+                    {isLoggedIn ? <Grid.Column width={8} >
                         <Header>Please enter your payment details:</Header>
                         <Form>
                             <Input
@@ -108,7 +113,10 @@ export default function Cartpage() {
                             /><br /><br />
                             <CustomButton as={PaystackButton} content='Order Now' {...componentProps} />
                         </Form>
-                    </Grid.Column>
+                    </Grid.Column> : <Grid.Column>
+                        <Message warning><Message.Header>
+                            You must be logged in to order</Message.Header>
+                            <Message.Content><LoginButton setLogin={setIsLoggedIn} /></Message.Content></Message></Grid.Column>}
                     <Grid.Column width={4}><Grid columns={2}>
                         <Grid.Column width={5}>
                             <Header size='small'>Subtotal:</Header>

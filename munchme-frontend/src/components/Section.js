@@ -1,27 +1,39 @@
-import { Segment, Grid, Dimmer, Loader, Message, Image, Header } from 'semantic-ui-react';
+import { Segment, Grid, Dimmer, Loader, Message, Image, Header, Button } from 'semantic-ui-react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CustomButton } from './CustomButton';
-import CakeModal from './CakeModal';
+import { CustomButton } from './custom_button';
+import CakeModal from './cake_modal';
+
+function getData(setdata, setloading) {
+    axios.get('https://munchme.herokuapp.com/api/cakes').then(res => {
+        setloading(false)
+        setdata(res.data)
+    }).catch(err => {
+        setloading(false)
+    });
+}
 
 export function CakeSection() {
-    const [error, seterror] = useState(null)
     const [data, setdata] = useState(null)
-
+    const [loading, setloading] = useState(true)
     useEffect(() => {
-        axios.get('https://munchme.herokuapp.com/api/cakes').then(res => setdata(res.data)).catch(err => seterror(err));
+        getData(setdata, setloading)
     }, []);
     return <Segment basic textAlign='center'>
-        {error ? <Message negative>
-            <Message.Header>Sorry, an error occured!</Message.Header>
-        </Message> : data ? <><Grid textAlign='center' stackable columns={3}> {data['cakes'].map((value, index) => <Grid.Column key={index}>
-            <CakeModal value={value} index={index} />
-        </Grid.Column>)}</Grid><CustomButton as={Link} to='/cakes' content='View all' size='large' /> </> : <Segment style={{ minHeight: 100 }}>
+        {loading ? <Segment style={{ minHeight: 100 }}>
             <Dimmer active>
                 <Loader size='small'>Loading</Loader>
             </Dimmer>
-        </Segment>}
+        </Segment> : data ? <><Grid textAlign='center' stackable columns={3}> {data['cakes'].map((value, index) => <Grid.Column key={index}>
+            <CakeModal value={value} index={index} />
+        </Grid.Column>)}</Grid><CustomButton as={Link} to='/cakes' content='View all' size='large' /> </> : <Message negative>
+            <Message.Header>Sorry, an error occured!</Message.Header>
+            <Message.Content><Button style={{ marginTop: 5 }} color='red' content='Retry' onClick={() => {
+                setloading(true)
+                getData(setdata, setloading)
+            }} /></Message.Content>
+        </Message>}
     </Segment>
 }
 

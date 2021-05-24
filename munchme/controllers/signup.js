@@ -1,8 +1,16 @@
 const User = require('../models/user');
+const jwt = require('jsonwebtoken')
 
 module.exports = (req, res) => {
     const { name, email, password } = req.body
-    User.create({ name, email, password }).then((user) => res.status(201).json(user)).catch(err => handleErrors(err, res))
+    User.create({ name, email, password }).then((user) => {
+        const token = createToken(user._id)
+        res.status(201).json({ user, token })
+    }).catch(err => handleErrors(err, res))
+}
+
+function createToken(id) {
+    return jwt.sign({ id }, process.env.JWT_SECRET,)
 }
 
 function handleErrors(err, res) {
@@ -19,5 +27,5 @@ function handleErrors(err, res) {
             errors[error.properties.path] = error.properties.message
         })
     }
-    res.status(400).json(errors)
+    res.status(400).json({ 'errors': errors })
 }

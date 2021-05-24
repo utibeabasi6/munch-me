@@ -1,8 +1,8 @@
 import { Segment, Container, Header, Grid, Loader, Dimmer, Message, Input } from 'semantic-ui-react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import Navbar from '../components/Navbar';
-import CakeModal from '../components/CakeModal';
+import Navbar from '../components/navbar';
+import CakeModal from '../components/cake_modal';
 
 
 export default function Productspage() {
