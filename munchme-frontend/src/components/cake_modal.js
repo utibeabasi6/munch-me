@@ -15,6 +15,7 @@ export default function CakeModal({ index, value }) {
             onOpen={() => setCakeId(index)}
             open={cakeId === index}
             trigger={<Card
+                fluid
                 centered
                 meta={'NGN ' + value['price']}
                 image={value['image']}

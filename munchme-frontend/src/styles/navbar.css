@@ -1,0 +1,46 @@
+.navbar {
+  padding: 5px 10vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.navbar ul li {
+  margin-left: 10px;
+  list-style: none;
+}
+
+.navbar ul a {
+  color: gray;
+}
+
+.navbar ul span {
+  background-color: #111;
+  color: white;
+  padding: 3px 7px;
+  border-radius: 50%;
+}
+
+.navbar .active {
+  color: #111;
+}
+
+.navbar .logo {
+  font-weight: bold;
+  font-size: x-large;
+  color: #db2828;
+}
+
+@media screen and (max-width: 900px) {
+  .navbar .logo {
+    font-size: larger;
+  }
+}

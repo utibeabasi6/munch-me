@@ -4,7 +4,6 @@ import { getTotalPriceInCart, CartContext, getCart, removeFromCart, getTotalItem
 import { useContext, useState } from "react";
 import axios from "axios";
 import { PaystackButton } from "react-paystack";
-import { CustomButton } from "../components/custom_button";
 import { userIsLoggedIn } from "../services/auth";
 import { LoginButton } from "../components/auth_components";
 
@@ -111,7 +110,7 @@ export default function Cartpage() {
                                 value={phone}
                                 onChange={(e) => setPhone(e.target.value)}
                             /><br /><br />
-                            <CustomButton as={PaystackButton} content='Order Now' {...componentProps} />
+                            <Button as={PaystackButton} content='Order Now' {...componentProps} />
                         </Form>
                     </Grid.Column> : <Grid.Column>
                         <Message warning><Message.Header>

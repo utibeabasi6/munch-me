@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react'
-import { withRouter } from 'react-router-dom/cjs/react-router-dom.min'
-import { Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import { CustomButton } from '../components/custom_button'
+import { Link, withRouter } from 'react-router-dom/cjs/react-router-dom.min'
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import Navbar from '../components/navbar'
 import { AuthContext, loginUser } from '../services/auth'
 
@@ -33,9 +32,10 @@ export function LoginPage() {
                             onChange={(e) => setpassword(e.target.value)}
                         />
                         <Header textAlign='left' size='small' color='red'>{errors['password']}</Header>
-                        <CustomButton onClick={
+                        <Button onClick={
                             () => {
-                                fetch('http://munchme.herokuapp.com/auth/login', {
+                                seterrors({})
+                                fetch('http://localhost:3001/auth/login', {
                                     method: 'post',
                                     body: JSON.stringify({
                                         email: email,
@@ -56,11 +56,11 @@ export function LoginPage() {
                             }
                         } fluid size='large'>
                             Login
-          </CustomButton>
+          </Button>
                     </Segment>
                 </Form>
                 <Message>
-                    New to us? <a href='/sign-up'>Sign Up</a>
+                    New to us? <Link to='/sign-up'>Sign Up</Link>
                 </Message>
             </Grid.Column>
         </Grid></>

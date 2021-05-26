@@ -1,13 +1,13 @@
-import { CustomButton } from "./custom_button";
 import { Link } from "react-router-dom";
+import { Button } from "semantic-ui-react";
 import { logoutUser } from "../services/auth";
 
 export function LoginButton() {
-    return <CustomButton as={Link} to={'/login'} content='Login' />
+    return <Button as={Link} to={'/login'} content='Login' />
 }
 
 export function LogoutButton() {
-    return <CustomButton content='Logout' onClick={() => {
+    return <Button content='Logout' onClick={() => {
         logoutUser()
         window.location.assign('/')
     }} />

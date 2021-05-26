@@ -1,0 +1,64 @@
+.hero {
+  background-color: #fff5ec;
+  min-height: 80vh;
+  position: relative;
+}
+
+.heroHeader {
+  font-weight: 900;
+  font-size: 5em;
+  color: rgba(46, 38, 111, 0.05);
+}
+
+@media screen and (max-width: 900px) {
+  .heroHeader {
+    font-size: 3em;
+  }
+}
+
+.cakes {
+  text-align: center;
+  background-color: #fff5ec;
+}
+
+.app {
+  background-color: #ffedde;
+  padding: 30px 0;
+}
+
+.app h1 {
+  position: relative;
+}
+
+.app h1::before {
+  content: "";
+  position: absolute;
+  left: -25px;
+  width: 10px;
+  height: 100%;
+  background-color: #db2828;
+}
+
+.services {
+  padding: 20px 0;
+}
+
+.services h1 {
+  position: relative;
+}
+
+.services h1::before {
+  content: "";
+  position: absolute;
+  left: -25px;
+  width: 10px;
+  height: 200%;
+  background-color: #db2828;
+}
+
+.services img {
+  padding: 40px;
+  background-color: #ffedde;
+  width: 200px;
+  height: 200px;
+}
