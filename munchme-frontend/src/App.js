@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Homepage } from './pages/homepage';
-import Cartpage from './pages/cartpage';
-import Productspage from './pages/productspage';
+import { Homepage } from './pages/Homepage';
+import Cartpage from './pages/Cartpage';
+import Productspage from './pages/Productspage';
 import { CartContext, getTotalItemsInCart } from './services/cart';
 import { getUser, AuthContext } from './services/auth';
 import { useMemo, useState } from 'react';
